@@ -48,3 +48,24 @@ dependencies {
     compile 'com.android.support:support-v4:26.+'
     testCompile 'junit:junit:4.12'
 }
+
+String etaJarPath = '../dist-newstyle/build/x86_64-windows/eta-0.0.9.2/eta-first-0.1.0.0/c/eta-first/build/eta-first/eta-first.jar'
+
+task etlasNewBuild(type: Exec) {
+    workingDir '..'
+    commandLine 'etlas', 'new-build'
+    // Causes an error:
+    //   Failed to capture snapshot of input files for task 'etlasNewBuild' property '$1' during up-to-date check
+    //   > Could not normalize path for file 'C:\Users\igrep\Dropbox\prg\prj\KeepMeContributingHs\app\src\**\*.hs'.
+    // inputs.files "src/**/*.hs"
+    outputs.file etaJarPath
+}
+
+task installEtaJar(type: Copy, dependsOn: 'etlasNewBuild') {
+    from etaJarPath
+    into 'libs/'
+}
+
+project.afterEvaluate {
+    prepareDebugDependencies.dependsOn 'installEtaJar'
+}

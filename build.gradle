@@ -12,16 +12,6 @@ buildscript {
     }
 }
 
-plugins {
-    id 'com.typelead.eta'
-}
-
-apply plugin: 'com.typelead.eta:0.0.1-SNAPSHOT'
-
-eta {
-    etlasVersion = '1.0.2.0'
-}
-
 allprojects {
     repositories {
         jcenter()
