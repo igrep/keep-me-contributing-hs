@@ -58,6 +58,13 @@ task etlasNewBuild(type: Exec) {
     //   Failed to capture snapshot of input files for task 'etlasNewBuild' property '$1' during up-to-date check
     //   > Could not normalize path for file 'C:\Users\igrep\Dropbox\prg\prj\KeepMeContributingHs\app\src\**\*.hs'.
     // inputs.files "src/**/*.hs"
+    def hsFiles = []
+    new File(projectDir, 'src').eachFileRecurse { file ->
+        if (file.name.endsWith('.hs')) {
+            hsFiles << file
+        }
+    }
+    inputs.files(hsFiles)
     outputs.file etaJarPath
 }
 
