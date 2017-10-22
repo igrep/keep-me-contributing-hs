@@ -10,5 +10,5 @@
 /app/libs/
 
 # Haskell
-/hs/dist/
-/hs/dist-newstyle/
+/dist/
+/dist-newstyle/
