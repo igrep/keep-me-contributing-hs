@@ -9,9 +9,13 @@ module Main where
 import Java
 import Java.StringUtils as S
 
+import qualified KeepMeContributingHs
+
+
 -- Dummy main function to make uber jar in Eta
 main :: IO ()
-main = putStrLn "Hello, Etlas!"
+main = print =<< getLatestCommitFor "igrep" "daily-commits"
+-- main = putStrLn "Hello, eta!"
 
 
 data {-# CLASS "android.content.Context" #-}
