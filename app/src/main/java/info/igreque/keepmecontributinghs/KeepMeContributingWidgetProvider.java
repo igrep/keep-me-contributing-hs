@@ -8,5 +8,6 @@ public class KeepMeContributingWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        KeepMeContributingWidgetProviderHs.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 }

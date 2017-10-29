@@ -40,6 +40,10 @@ data {-# CLASS "android.widget.TextView" #-}
 type instance Inherits TextView = '[View]
 
 
+data {-# CLASS "android.widget.Toast" #-}
+  Toast = Toast (Object# Toast) deriving Class
+
+
 data {-# CLASS "android.appwidget.AppWidgetManager" #-}
   AppWidgetManager = AppWidgetManager (Object# AppWidgetManager) deriving Class
 
@@ -59,8 +63,12 @@ foreign import java unsafe "setText"
   setText :: (c <: CharSequence) => c -> Java TextView ()
 
 
-foreign import java unsafe "@static android.widget.Toast"
-  makeToast :: (c <: CharSequence) => Context -> c -> Int -> Java a ()
+foreign import java unsafe "@static android.widget.Toast.makeText"
+  makeText :: (c <: CharSequence) => Context -> c -> Int -> Java a Toast
+
+
+foreign import java unsafe "show"
+  showToast :: Java Toast ()
 
 
 foreign import java unsafe "@static @field android.widget.Toast.LENGTH_LONG"
@@ -81,9 +89,10 @@ startActivity activity = do
   activity <.> setContentView textView
 
 
-foreign export java "@static android.appwidget.AppWidgetProviderHs.onUpdate"
+foreign export java "@static info.igreque.keepmecontributinghs.KeepMeContributingWidgetProviderHs.onUpdate"
   onWidgetUpdate :: Context -> AppWidgetManager -> JIntArray -> Java a ()
 
 onWidgetUpdate :: Context -> AppWidgetManager -> JIntArray -> Java a ()
-onWidgetUpdate c _w _is =
-  makeToast c ("Hello, Widget written in Eta!"  :: JString) c_TOAST_LONG
+onWidgetUpdate c _w _is = do
+  toast <- makeText c ("Hello, Widget written in Eta!"  :: JString) c_TOAST_LONG
+  toast <.> showToast
