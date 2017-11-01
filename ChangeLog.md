@@ -1,4 +1,4 @@
-# Revision history for eta-first
+# Revision history for keep-me-contributing-hs
 
 ## 0.1.0.0  -- YYYY-mm-dd
 
