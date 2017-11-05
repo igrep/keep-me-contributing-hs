@@ -10,8 +10,13 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    /**
+     * NOTE: This test accesses to GitHub API without any mock!
+     *       DO NOT run on CI!
+     * @throws Exception when test fails.
+     */
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void run_eta_main() throws Exception {
+        eta.main.main(new String[]{});
     }
 }
