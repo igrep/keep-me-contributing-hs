@@ -15,14 +15,10 @@ cabal-version:       >=1.10
 
 library
   exposed-modules:     KeepMeContributingHs
+                     , KeepMeContributingHs.Date
+                     , KeepMeContributingHs.Github
   build-depends:       base >=4.8 && < 5.0
-                     , base-orphans == 0.5.4
-                     , containers >= 0.5.8.1 && <= 0.5.9.1
-                     , filepath >= 1.4.1.0 && <= 1.4.1.1
-                     , github
-                     -- , github >= 0.16.0
-                     , vector
-                     -- , vector >= 0.12.0
+                     , time >= 1.6.0.1 && <= 1.8.0.3
   hs-source-dirs:      app/src/main/hslib
   default-language:    Haskell2010
   -- default-extensions:  OverloadedStrings

@@ -14,46 +14,39 @@ import qualified KeepMeContributingHs
 
 -- Dummy main function to make uber jar in Eta
 main :: IO ()
-main = print =<< getLatestCommitFor "igrep" "daily-commits"
+main = print =<< KeepMeContributingHs.getLatestCommitDateFor "igrep" "daily-commits"
 -- main = putStrLn "Hello, eta!"
 
 
-data {-# CLASS "android.content.Context" #-}
-  Context = Context (Object# Context) deriving Class
+data Context = Context @android.content.Context deriving Class
 
 
-data {-# CLASS "android.app.Activity" #-}
-  Activity = Activity (Object# Activity) deriving Class
+data Activity = Activity @android.app.Activity deriving Class
+
 
 type instance Inherits Activity = '[Context]
 
-
-data {-# CLASS "android.view.View" #-}
-  View = View (Object# View) deriving Class
+data View = View @android.view.View deriving Class
 
 
-data {-# CLASS "android.widget.ImageView" #-}
-  ImageView = ImageView (Object# ImageView) deriving Class
+data ImageView = ImageView @android.widget.ImageView deriving Class
 
 type instance Inherits ImageView = '[View]
 
 
-data {-# CLASS "android.widget.TextView" #-}
-  TextView = TextView (Object# TextView) deriving Class
+data TextView = TextView @android.widget.TextView deriving Class
 
 type instance Inherits TextView = '[View]
 
 
-data {-# CLASS "android.widget.Toast" #-}
-  Toast = Toast (Object# Toast) deriving Class
+data Toast = Toast @android.widget.Toast deriving Class
 
 
-data {-# CLASS "android.appwidget.AppWidgetManager" #-}
-  AppWidgetManager = AppWidgetManager (Object# AppWidgetManager) deriving Class
+data AppWidgetManager = AppWidgetManager @android.appwidget.AppWidgetManager deriving Class
 
 
-data {-# CLASS "android.appwidget.AppWidgetProvider" #-}
-  AppWidgetProvider = AppWidgetProvider (Object# AppWidgetProvider) deriving Class
+data AppWidgetProvider = AppWidgetProvider @android.appwidget.AppWidgetProvider deriving Class
+
 
 foreign import java unsafe "setContentView"
   setContentView :: (v <: View) => v -> Java Activity ()
@@ -79,12 +72,8 @@ foreign import java unsafe "@static @field android.widget.Toast.LENGTH_LONG"
   c_TOAST_LONG :: Int
 
 
-data {-# CLASS "info.igreque.android.ActivityImpl" #-}
-  ActivityImpl = ActivityImpl (Object# ActivityImpl)
-
-
-foreign export java "@static startActivity"
-  startActivity :: Activity -> Java ActivityImpl ()
+foreign export java "@static info.igreque.android.ActivityImpl.startActivity"
+  startActivity :: Activity -> Java a ()
 
 startActivity :: Activity -> Java a ()
 startActivity activity = do

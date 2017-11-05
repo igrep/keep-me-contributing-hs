@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -37,6 +38,18 @@ android {
         sourceCompatibility = 1.7
         targetCompatibility = 1.7
     }
+
+    // http://anton0825.hatenablog.com/entry/2015/01/16/154147
+     packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
 }
 
 dependencies {
@@ -44,16 +57,17 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile group: 'org.kohsuke', name: 'github-api', version: '1.90'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support:support-v4:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
 }
 
-String etaJarPath = '../dist-newstyle/build/x86_64-windows/eta-0.0.9.3/eta-first-0.1.0.0/c/eta-first/build/eta-first/eta-first.jar'
+String etaJarPath = '../dist/build/keep-me-contributing-hs/keep-me-contributing-hs.jar'
 
-task etlasNewBuild(type: Exec) {
+task etlasBuild(type: Exec) {
     workingDir '..'
-    commandLine 'etlas', 'new-build'
+    commandLine 'etlas', 'build'
     // Causes an error:
     //   Failed to capture snapshot of input files for task 'etlasNewBuild' property '$1' during up-to-date check
     //   > Could not normalize path for file 'C:\Users\igrep\Dropbox\prg\prj\KeepMeContributingHs\app\src\**\*.hs'.
@@ -68,7 +82,7 @@ task etlasNewBuild(type: Exec) {
     outputs.file etaJarPath
 }
 
-task installEtaJar(type: Copy, dependsOn: 'etlasNewBuild') {
+task installEtaJar(type: Copy, dependsOn: 'etlasBuild') {
     from etaJarPath
     into 'libs/'
 }

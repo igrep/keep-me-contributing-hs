@@ -3,7 +3,7 @@ package info.igreque.keepmecontributinghs;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
-import info.igreque.android.AppWidgetProviderHs;
+import info.igreque.keepmecontributinghs.KeepMeContributingWidgetProviderHs;
 
 public class KeepMeContributingWidgetProvider extends AppWidgetProvider {
 

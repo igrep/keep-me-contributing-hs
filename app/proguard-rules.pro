@@ -24,8 +24,11 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--dontwarn base.**
--dontwarn eta.**
--dontwarn ghc_prim.**
--dontwarn integer.**
--dontwarn main.**
+#-dontwarn base.**
+#-dontwarn eta.**
+#-dontwarn ghc_prim.**
+#-dontwarn integer.**
+#-dontwarn main.**
+#-dontwarn com.fasterxml.jackson.databind.ext.**
+#-dontwarn org.jvnet.hudson.annotation_indexer.**
+#-dontwarn org.kohsuke.github.**
