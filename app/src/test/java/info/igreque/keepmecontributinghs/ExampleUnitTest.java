@@ -19,4 +19,9 @@ public class ExampleUnitTest {
     public void run_eta_main() throws Exception {
         eta.main.main(new String[]{});
     }
+
+    @Test
+    public void run_eta_spec() throws Exception {
+//        info.igreque.KeepMeContributingWidgetProviderHs.spec();
+    }
 }
