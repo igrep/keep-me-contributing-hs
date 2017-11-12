@@ -6,7 +6,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeOperators #-}
 
-module KeepMeContributingHs.Date
+module KeepMeContributingHs.Android.Date
   ( javaDateToZonedTime
   , getCurrentTime
   )

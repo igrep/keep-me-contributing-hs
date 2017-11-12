@@ -2,8 +2,6 @@ package info.igreque.keepmecontributinghs;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -21,7 +19,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void run_eta_spec() throws Exception {
-//        info.igreque.KeepMeContributingWidgetProviderHs.spec();
+    public void run_eta_tests() throws Exception {
+//        info.igreque.KeepMeContributingHs.runAllTests();
     }
 }

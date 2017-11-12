@@ -67,7 +67,14 @@ String etaJarPath = '../dist/build/keep-me-contributing-hs/keep-me-contributing-
 
 task etlasBuild(type: Exec) {
     workingDir '..'
-    commandLine 'etlas', 'build'
+    // https://functor.tokyo/blog/2017-07-28-ghc-warnings-you-should-enable
+    commandLine(
+        'etlas',
+        'build',
+        '--eta-option=-Wall',
+        '--eta-option=-fwarn-incomplete-uni-patterns',
+        '--eta-option=-fwarn-incomplete-record-updates',
+    )
     // Causes an error:
     //   Failed to capture snapshot of input files for task 'etlasNewBuild' property '$1' during up-to-date check
     //   > Could not normalize path for file 'C:\Users\igrep\Dropbox\prg\prj\KeepMeContributingHs\app\src\**\*.hs'.

@@ -1,33 +1,20 @@
-{-# LANGUAGE DeriveDataTypeable #-}
-
-module KeepMeContributingHs
-  ( OwnerName
-  , RepositoryName
-  , getLatestCommitDateFor
+module KeepMeContributingHs.Android
+  ( getLatestCommitDateFor
+  , module KeepMeContributingHs.Android.Date
   ) where
 
 
 import           Control.Exception
 import           Data.String
 import           Data.Time.LocalTime
-import           Data.Typeable
 import           Java
-import           Java.Exception
 
-import           KeepMeContributingHs.Date
-import           KeepMeContributingHs.Github
+import           KeepMeContributingHs.Core hiding (getLatestCommitDateFor)
+import           KeepMeContributingHs.Android.Date
+import           KeepMeContributingHs.Android.Github
 
 
-type OwnerName = String
-
-type RepositoryName = String
-
-data GithubException =
-  EmptyCommits | NoRepositoryOwner | OtherException JException deriving (Show, Typeable)
-
-instance Exception GithubException
-
-getLatestCommitDateFor :: OwnerName -> RepositoryName -> IO (Either GithubException ZonedTime)
+getLatestCommitDateFor :: OwnerName -> RepositoryName -> IO (Either AppException ZonedTime)
 getLatestCommitDateFor o r =
   (mapLeft OtherException) <$> try (java action)
   where

@@ -9,38 +9,20 @@ module Main where
 import Java
 import Java.StringUtils as S
 
-import Test.Hspec
-
-import qualified KeepMeContributingHs
-import qualified KeepMeContributingHs.Date
+import qualified KeepMeContributingHs.Android as KeepMeContributingHs
+import qualified KeepMeContributingHs.Test
 
 
 -- Dummy main function to make uber jar in Eta
 main :: IO ()
-main = hspec $
-  describe "KeepMeContributingHs.Date.getCurrentTime" $ do
-    it "can get current time without error" $
-      print =<< KeepMeContributingHs.Date.getCurrentTime
-
-    it "can get latest commit time without error" $
-      print =<< KeepMeContributingHs.getLatestCommitDateFor "igrep" "daily-commits"
-
--- do
---   print =<< KeepMeContributingHs.getLatestCommitDateFor "igrep" "daily-commits"
---   print =<< KeepMeContributingHs.Date.getCurrentTime
+main = KeepMeContributingHs.Test.runAllTests
 
 
-foreign export java "@static info.igreque.KeepMeContributingWidgetProviderHs.spec"
-  spec :: Java a ()
+foreign export java "@static info.igreque.KeepMeContributingHs.runAllTests"
+  runAllTests :: Java a ()
 
-spec :: Java a ()
-spec = io $ hspec $
-  describe "KeepMeContributingHs.Date.getCurrentTime" $ do
-    it "can get current time without error" $
-      print =<< KeepMeContributingHs.Date.getCurrentTime
-
-    it "can get latest commit time without error" $
-      print =<< KeepMeContributingHs.getLatestCommitDateFor "igrep" "daily-commits"
+runAllTests :: Java a ()
+runAllTests = io $ KeepMeContributingHs.Test.runAllTests
 
 
 data Context = Context @android.content.Context deriving Class

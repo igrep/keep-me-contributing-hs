@@ -5,7 +5,8 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module KeepMeContributingHs.Github where
+module KeepMeContributingHs.Android.Github where
+
 
 import Java
 import Java.DateTime

@@ -15,11 +15,13 @@ cabal-version:       >=1.10
 executable keep-me-contributing-hs
   main-is:             Export.hs
   -- other-extensions:
-  other-modules:       KeepMeContributingHs
-                     , KeepMeContributingHs.Date
-                     , KeepMeContributingHs.Github
+  other-modules:       KeepMeContributingHs.Core
+                     , KeepMeContributingHs.Android
+                     , KeepMeContributingHs.Android.Date
+                     , KeepMeContributingHs.Android.Github
   build-depends:       base >=4.8 && < 5.0
                      , time >= 1.6.0.1 && <= 1.8.0.3
-                     , hspec
+                     , mtl
+                     , HUnit >= 1.2.5.2 && <= 1.6.0.0
   hs-source-dirs:      app/src/main/hs
   default-language:    Haskell2010
